@@ -170,17 +170,18 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
               width: index === currentIndex ? '2rem' : '0.5rem',
               height: '0.5rem',
               backgroundColor: index === currentIndex 
-                ? 'rgb(var(--primary))' 
-                : 'rgba(var(--muted-foreground), 0.3)',
+                ? `rgb(var(--primary))` 
+                : `rgb(var(--muted-foreground))`,
+              opacity: index === currentIndex ? 1 : 0.3,
             }}
             onMouseEnter={(e) => {
               if (index !== currentIndex) {
-                e.currentTarget.style.backgroundColor = 'rgba(var(--muted-foreground), 0.5)'
+                e.currentTarget.style.opacity = '0.5'
               }
             }}
             onMouseLeave={(e) => {
               if (index !== currentIndex) {
-                e.currentTarget.style.backgroundColor = 'rgba(var(--muted-foreground), 0.3)'
+                e.currentTarget.style.opacity = '0.3'
               }
             }}
             aria-label={`Go to project ${index + 1}`}

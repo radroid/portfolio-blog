@@ -236,15 +236,24 @@ export function Diagnostics() {
     <div className="fixed bottom-4 right-4 z-50">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="rounded-lg p-3 text-xs font-mono shadow-lg transition-colors duration-300"
+        className="rounded-lg p-3 text-xs font-mono shadow-lg transition-all duration-300"
         style={{
           backgroundColor: 'rgb(var(--card))',
+          borderColor: 'transparent',
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          transform: 'scale(1)',
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = 'rgba(var(--muted), 0.5)'
+          const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim()
+          e.currentTarget.style.borderColor = `rgba(${primaryColor}, 0.3)`
+          e.currentTarget.style.transform = 'scale(1.05)'
+          e.currentTarget.style.boxShadow = `0 20px 25px -5px rgba(${primaryColor}, 0.2), 0 10px 10px -5px rgba(${primaryColor}, 0.1)`
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = 'rgb(var(--card))'
+          e.currentTarget.style.borderColor = 'transparent'
+          e.currentTarget.style.transform = 'scale(1)'
+          e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
         }}
       >
         <div style={{ color: 'rgb(var(--foreground))' }}>

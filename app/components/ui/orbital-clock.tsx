@@ -44,6 +44,23 @@ export function OrbitalClock() {
     })
   }
 
+  const getTimezone = () => {
+    try {
+      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
+      // Get timezone abbreviation (e.g., EST, PST, GMT)
+      const formatter = new Intl.DateTimeFormat("en-US", {
+        timeZoneName: "short",
+        timeZone,
+      })
+      const parts = formatter.formatToParts(time)
+      const tzName = parts.find((part) => part.type === "timeZoneName")?.value || timeZone
+      return tzName
+    } catch {
+      // Fallback if timezone detection fails
+      return "UTC"
+    }
+  }
+
   // Prevent hydration mismatch by only rendering after mount
   if (!mounted) {
     return (
@@ -131,8 +148,6 @@ export function OrbitalClock() {
                   left: `${x}%`,
                   top: `${y}%`,
                   transform: "translate(-50%, -50%)",
-                  width: '4px',
-                  height: '4px',
                   ...(isActive 
                     ? {
                         background: `rgb(var(--orb-primary))`,
@@ -144,10 +159,14 @@ export function OrbitalClock() {
                       ? {
                           background: `rgb(var(--orb-marker-strong))`,
                           opacity: 0.8,
+                          width: '4px',
+                          height: '4px',
                         }
                       : {
                           background: `rgb(var(--orb-marker-weak))`,
                           opacity: 0.5,
+                          width: '4px',
+                          height: '4px',
                         }
                   ),
                 }}
@@ -205,16 +224,19 @@ export function OrbitalClock() {
         </div>
       </div>
 
-      {/* Date reveal on hover */}
+      {/* Date and timezone reveal on hover */}
       <div
-        className="absolute w-full flex items-center justify-center -bottom-8 left-1/2 font-mono text-xs tracking-[0.3em] uppercase transition-all duration-500"
+        className="absolute w-full flex flex-col items-center justify-center -bottom-12 left-1/2 font-mono text-xs tracking-[0.3em] uppercase transition-all duration-500"
         style={{
           transform: `translateX(-50%) translateY(${isHovered ? 0 : -10}px)`,
           opacity: isHovered ? 1 : 0,
           color: isHovered ? `rgb(var(--orb-primary))` : `rgba(var(--orb-date), 0.9)`,
         }}
       >
-        {formatDate()}
+        <div>{formatDate()}</div>
+        <div className="text-[0.65rem] tracking-[0.2em] mt-1 opacity-80">
+          {getTimezone()}
+        </div>
       </div>
     </div>
   )
