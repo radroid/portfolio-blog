@@ -219,8 +219,14 @@ export function Diagnostics() {
   if (!data) {
     return (
       <div className="fixed bottom-4 right-4 z-50">
-        <div className="bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 rounded-lg p-3 text-xs font-mono">
-          <div className="text-neutral-500 dark:text-neutral-400">LOADING...</div>
+        <div 
+          className="rounded-lg p-3 text-xs font-mono shadow-lg transition-colors duration-300"
+          style={{
+            backgroundColor: 'rgb(var(--card))',
+            color: 'rgb(var(--card-foreground))',
+          }}
+        >
+          <div style={{ color: 'rgb(var(--muted-foreground))' }}>LOADING...</div>
         </div>
       </div>
     )
@@ -230,139 +236,183 @@ export function Diagnostics() {
     <div className="fixed bottom-4 right-4 z-50">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 rounded-lg p-3 text-xs font-mono hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors"
+        className="rounded-lg p-3 text-xs font-mono shadow-lg transition-colors duration-300"
+        style={{
+          backgroundColor: 'rgb(var(--card))',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = 'rgba(var(--muted), 0.5)'
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = 'rgb(var(--card))'
+        }}
       >
-        <div className="text-neutral-600 dark:text-neutral-400">
+        <div style={{ color: 'rgb(var(--foreground))' }}>
           LOCATION: {data.location}
         </div>
-        <div className="text-neutral-500 dark:text-neutral-500 mt-1">
+        <div className="mt-1" style={{ color: 'rgb(var(--muted-foreground))' }}>
           {data.stat} • {data.platform}
         </div>
       </button>
 
       {isOpen && (
-        <div className="absolute bottom-full right-0 mb-2 bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 text-xs font-mono max-w-md max-h-[60vh] overflow-y-auto shadow-lg">
-          <div className="mb-3 font-semibold text-sm border-b border-neutral-200 dark:border-neutral-800 pb-2">
+        <div 
+          className="absolute bottom-full right-0 mb-2 rounded-lg p-4 text-xs font-mono max-w-md max-h-[60vh] overflow-y-auto shadow-lg transition-colors duration-300"
+          style={{
+            backgroundColor: 'rgb(var(--card))',
+          }}
+        >
+          <div 
+            className="mb-3 font-semibold text-sm border-b pb-2"
+            style={{
+              color: 'rgb(var(--foreground))',
+              borderBottomColor: 'rgba(var(--border), 0.5)',
+              borderBottomWidth: '1px',
+              borderBottomStyle: 'solid',
+            }}
+          >
             DIAGNOSTICS
           </div>
           <div className="space-y-1.5">
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">LOCATION:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.location}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>LOCATION:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.location}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">PLATFORM:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.platform}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>PLATFORM:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.platform}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">LANGUAGE:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.language}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>LANGUAGE:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.language}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">NETWORK:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.network}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>NETWORK:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.network}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">MEMORY:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.memory}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>MEMORY:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.memory}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">CORES:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.cores}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>CORES:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.cores}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">UPTIME:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.uptime}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>UPTIME:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.uptime}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">VIEWPORT:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.viewport}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>VIEWPORT:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.viewport}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">SCREEN:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.screen}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>SCREEN:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.screen}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">COLOR DEPTH:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.colorDepth}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>COLOR DEPTH:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.colorDepth}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">PIXEL RATIO:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.pixelRatio}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>PIXEL RATIO:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.pixelRatio}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">TIMEZONE:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.timezone}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>TIMEZONE:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.timezone}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">HOST:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.host}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>HOST:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.host}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">COOKIES:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.cookies}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>COOKIES:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.cookies}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">JAVA:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.java}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>JAVA:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.java}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">WEBGL:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.webgl}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>WEBGL:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.webgl}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">BATTERY:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.battery}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>BATTERY:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.battery}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">GEOLOCATION:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.geolocation}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>GEOLOCATION:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.geolocation}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">LOCAL STORAGE:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.localStorage}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>LOCAL STORAGE:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.localStorage}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">SESSION STORAGE:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.sessionStorage}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>SESSION STORAGE:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.sessionStorage}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">INDEXEDDB:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.indexedDB}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>INDEXEDDB:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.indexedDB}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-neutral-500 dark:text-neutral-400">STAT:</span>
-              <span className="text-neutral-800 dark:text-neutral-200">{data.stat}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>STAT:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{data.stat}</span>
             </div>
-            <div className="mt-3 pt-3 border-t border-neutral-200 dark:border-neutral-800">
-              <div className="text-neutral-500 dark:text-neutral-400 mb-1">USER AGENT:</div>
-              <div className="text-neutral-800 dark:text-neutral-200 break-all text-[10px]">
+            <div 
+              className="mt-3 pt-3"
+              style={{
+                borderTopColor: 'rgba(var(--border), 0.5)',
+                borderTopWidth: '1px',
+                borderTopStyle: 'solid',
+              }}
+            >
+              <div className="mb-1" style={{ color: 'rgb(var(--muted-foreground))' }}>USER AGENT:</div>
+              <div className="break-all text-[10px]" style={{ color: 'rgb(var(--foreground))' }}>
                 {data.userAgent}
               </div>
             </div>
           </div>
           
           {time && (
-            <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-800">
-              <div className="mb-2 font-semibold text-sm border-b border-neutral-200 dark:border-neutral-800 pb-2">
+            <div 
+              className="mt-4 pt-4"
+              style={{
+                borderTopColor: 'rgba(var(--border), 0.5)',
+                borderTopWidth: '1px',
+                borderTopStyle: 'solid',
+              }}
+            >
+              <div 
+                className="mb-2 font-semibold text-sm border-b pb-2"
+                style={{
+                  color: 'rgb(var(--foreground))',
+                  borderBottomColor: 'rgba(var(--border), 0.5)',
+                  borderBottomWidth: '1px',
+                  borderBottomStyle: 'solid',
+                }}
+              >
                 TIME
               </div>
               <div className="space-y-1.5">
                 <div className="flex justify-between">
-                  <span className="text-neutral-500 dark:text-neutral-400">UTC:</span>
-                  <span className="text-neutral-800 dark:text-neutral-200">{time.utc}</span>
+                  <span style={{ color: 'rgb(var(--muted-foreground))' }}>UTC:</span>
+                  <span style={{ color: 'rgb(var(--foreground))' }}>{time.utc}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-neutral-500 dark:text-neutral-400">LOCAL:</span>
-                  <span className="text-neutral-800 dark:text-neutral-200">{time.local}</span>
+                  <span style={{ color: 'rgb(var(--muted-foreground))' }}>LOCAL:</span>
+                  <span style={{ color: 'rgb(var(--foreground))' }}>{time.local}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-neutral-500 dark:text-neutral-400">UNIX:</span>
-                  <span className="text-neutral-800 dark:text-neutral-200">{time.unix}</span>
+                  <span style={{ color: 'rgb(var(--muted-foreground))' }}>UNIX:</span>
+                  <span style={{ color: 'rgb(var(--foreground))' }}>{time.unix}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-neutral-500 dark:text-neutral-400">ZONE:</span>
-                  <span className="text-neutral-800 dark:text-neutral-200">{time.zone}</span>
+                  <span style={{ color: 'rgb(var(--muted-foreground))' }}>ZONE:</span>
+                  <span style={{ color: 'rgb(var(--foreground))' }}>{time.zone}</span>
                 </div>
               </div>
             </div>

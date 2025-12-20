@@ -48,7 +48,15 @@ export function OrbitalClock() {
   if (!mounted) {
     return (
       <div className="relative flex items-center justify-center w-32 h-32">
-        <div className="absolute inset-2 rounded-full bg-white/95 dark:bg-black border border-slate-200/70 dark:border-neutral-800 shadow-xl" />
+        <div 
+          className="absolute inset-2 rounded-full shadow-xl transition-colors duration-300"
+          style={{
+            backgroundColor: 'rgb(var(--orb-clock-bg))',
+            borderColor: 'rgba(var(--border), 0.7)',
+            borderWidth: '1px',
+            borderStyle: 'solid',
+          }}
+        />
       </div>
     )
   }
@@ -59,12 +67,6 @@ export function OrbitalClock() {
       className={`
         relative flex items-center justify-center cursor-pointer select-none
         text-slate-900 dark:text-slate-100
-        /* Theme variables */
-        [--orb-primary:rgb(59,130,246)] dark:[--orb-primary:rgb(125,211,252)]
-        [--orb-marker-strong:rgba(15,23,42,0.7)] dark:[--orb-marker-strong:rgba(255,255,255,0.7)]
-        [--orb-marker-weak:rgba(15,23,42,0.35)] dark:[--orb-marker-weak:rgba(255,255,255,0.25)]
-        [--orb-center:rgba(15,23,42,0.9)] dark:[--orb-center:rgba(255,255,255,0.85)]
-        [--orb-date:rgba(100,116,139,0.9)] dark:[--orb-date:rgba(148,163,184,0.9)]
       `}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
@@ -88,19 +90,27 @@ export function OrbitalClock() {
           className="absolute inset-0 rounded-full transition-all duration-500"
           style={{
             background: isHovered
-              ? "radial-gradient(circle, color-mix(in srgb, var(--orb-primary) 40%, transparent) 0%, transparent 70%)"
+              ? `radial-gradient(circle, color-mix(in srgb, rgb(var(--orb-primary)) 40%, transparent) 0%, transparent 70%)`
               : "transparent",
             transform: isHovered ? "scale(1.3)" : "scale(1)",
           }}
         />
 
         {/* Clock face */}
-        <div className="absolute inset-2 rounded-full bg-white/95 dark:bg-black border border-slate-200/70 dark:border-neutral-800 shadow-xl">
+        <div 
+          className="absolute inset-2 rounded-full shadow-xl transition-colors duration-300"
+          style={{
+            backgroundColor: 'rgb(var(--orb-clock-bg))',
+            borderColor: 'rgba(var(--border), 0.7)',
+            borderWidth: '1px',
+            borderStyle: 'solid',
+          }}
+        >
           {/* Inner subtle ring */}
           <div
             className={`absolute inset-3 rounded-full border transition-all duration-500 ${
               isHovered
-                ? "border-[color:var(--orb-primary)]/40"
+                ? `border-[rgb(var(--orb-primary))]/40`
                 : "border-black/5 dark:border-white/5"
             }`}
           />
@@ -116,19 +126,30 @@ export function OrbitalClock() {
             return (
               <div
                 key={i}
-                className="absolute w-1 h-1 rounded-full transition-all duration-300"
+                className="absolute rounded-full transition-all duration-300"
                 style={{
                   left: `${x}%`,
                   top: `${y}%`,
                   transform: "translate(-50%, -50%)",
-                  background: isActive
-                    ? "var(--orb-primary)"
+                  width: '4px',
+                  height: '4px',
+                  ...(isActive 
+                    ? {
+                        background: `rgb(var(--orb-primary))`,
+                        boxShadow: `0 0 10px color-mix(in srgb, rgb(var(--orb-primary)) 70%, transparent)`,
+                        width: '6px',
+                        height: '6px',
+                      }
                     : i % 3 === 0
-                      ? "var(--orb-marker-strong)"
-                      : "var(--orb-marker-weak)",
-                  boxShadow: isActive
-                    ? "0 0 10px color-mix(in srgb, var(--orb-primary) 70%, transparent)"
-                    : "none",
+                      ? {
+                          background: `rgb(var(--orb-marker-strong))`,
+                          opacity: 0.8,
+                        }
+                      : {
+                          background: `rgb(var(--orb-marker-weak))`,
+                          opacity: 0.5,
+                        }
+                  ),
                 }}
               />
             )
@@ -136,21 +157,25 @@ export function OrbitalClock() {
 
           {/* Hour hand */}
           <div
-            className="absolute left-1/2 bottom-1/2 w-1 origin-bottom rounded-full transition-all duration-200
-                       bg-slate-800 dark:bg-slate-200"
+            className="absolute left-1/2 bottom-1/2 origin-bottom rounded-full transition-all duration-200"
             style={{
+              width: '3px',
               height: "28%",
               transform: `translateX(-50%) rotate(${hourDeg}deg)`,
+              backgroundColor: 'rgb(var(--orb-marker-strong))',
+              borderRadius: '3px',
             }}
           />
 
           {/* Minute hand */}
           <div
-            className="absolute left-1/2 bottom-1/2 w-0.5 origin-bottom rounded-full transition-all duration-200
-                       bg-slate-500 dark:bg-slate-300"
+            className="absolute left-1/2 bottom-1/2 origin-bottom rounded-full transition-all duration-200"
             style={{
+              width: '2px',
               height: "36%",
               transform: `translateX(-50%) rotate(${minuteDeg}deg)`,
+              backgroundColor: 'rgb(var(--orb-marker-weak))',
+              borderRadius: '2px',
             }}
           />
 
@@ -161,8 +186,8 @@ export function OrbitalClock() {
               width: "1px",
               height: "40%",
               transform: `translateX(-50%) rotate(${secondDeg}deg)`,
-              background: "var(--orb-primary)",
-              boxShadow: "0 0 8px color-mix(in srgb, var(--orb-primary) 70%, transparent)",
+              background: `rgb(var(--orb-primary))`,
+              boxShadow: `0 0 8px color-mix(in srgb, rgb(var(--orb-primary)) 70%, transparent)`,
             }}
           />
 
@@ -171,9 +196,9 @@ export function OrbitalClock() {
             className="absolute left-1/2 top-1/2 w-2 h-2 rounded-full transition-all duration-300"
             style={{
               transform: "translate(-50%, -50%)",
-              background: isHovered ? "var(--orb-primary)" : "var(--orb-center)",
+              background: isHovered ? `rgb(var(--orb-primary))` : `rgba(var(--orb-center), 0.9)`,
               boxShadow: isHovered
-                ? "0 0 12px color-mix(in srgb, var(--orb-primary) 80%, transparent)"
+                ? `0 0 12px color-mix(in srgb, rgb(var(--orb-primary)) 80%, transparent)`
                 : "none",
             }}
           />
@@ -186,7 +211,7 @@ export function OrbitalClock() {
         style={{
           transform: `translateX(-50%) translateY(${isHovered ? 0 : -10}px)`,
           opacity: isHovered ? 1 : 0,
-          color: isHovered ? "var(--orb-primary)" : "var(--orb-date)",
+          color: isHovered ? `rgb(var(--orb-primary))` : `rgba(var(--orb-date), 0.9)`,
         }}
       >
         {formatDate()}
