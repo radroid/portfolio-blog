@@ -18,6 +18,10 @@ export const metadata: Metadata = {
     template: '%s | Generalist Builder',
   },
   description: 'I build experiences—both digital and physical. Engineering background. Founder at ARK Expereinces.',
+  icons: {
+    icon: '/raj-avatar.png',
+    apple: '/raj-avatar.png',
+  },
   openGraph: {
     title: 'Generalist Builder | Engineering + Product + Businesses',
     description: 'I build experiences—both digital and physical. Engineering background. Founder at ARK Expereinces.',

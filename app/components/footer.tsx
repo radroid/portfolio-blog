@@ -28,7 +28,7 @@ export default function Footer() {
             style={{ color: 'inherit' }}
             rel="noopener noreferrer"
             target="_blank"
-            href="/https://x.com/curlycloud__"
+            href="https://x.com/curlycloud__"
           >
             <ArrowIcon />
             <p className="ml-2 h-7">X</p>

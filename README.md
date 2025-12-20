@@ -1,42 +1,56 @@
-# Portfolio Blog Starter
+# Portfolio & Blog
 
-This is a porfolio site template complete with a blog. Includes:
+Personal portfolio and blog site showcasing my work as a generalist builder—bridging the gap between physical experiences and digital infrastructure.
 
-- MDX and Markdown support
-- Optimized for SEO (sitemap, robots, JSON-LD schema)
-- RSS Feed
-- Dynamic OG images
-- Syntax highlighting
-- Tailwind v4
-- Vercel Speed Insights / Web Analytics
-- Geist font
+Visit at: **https://curlycloud.dev**
 
-## Demo
+## About
 
-https://portfolio-blog-starter.vercel.app
+I build experiences—both digital and physical—for people who want more from life. Engineering background. Founder at ARK Experiences. Engineer, Developer and Entrepreneur.
 
-## How to Use
+## Features
 
-You can choose from one of the following two methods to use this repository:
+- **Portfolio Showcase**: Interactive carousel displaying my projects and work
+- **Blog**: MDX and Markdown support for writing and sharing thoughts
+- **SEO Optimized**: Complete with sitemap, robots.txt, and JSON-LD schema
+- **RSS Feed**: Subscribe to stay updated with new posts
+- **Dynamic OG Images**: Automatically generated Open Graph images for social sharing
+- **Syntax Highlighting**: Beautiful code blocks in blog posts
+- **Dark Mode**: Theme switching with smooth transitions
+- **Modern Stack**: Built with Next.js 16, Tailwind v4, and TypeScript
+- **Performance**: Vercel Speed Insights and Web Analytics integrated
 
-### One-Click Deploy
+## Tech Stack
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS v4
+- **Content**: MDX with next-mdx-remote
+- **Deployment**: Cloudflare Pages (via OpenNext)
+- **Fonts**: Geist Sans & Geist Mono
+- **UI Components**: shadcn/ui
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/blog&project-name=blog&repository-name=blog)
+## Development
 
-### Clone and Deploy
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [pnpm](https://pnpm.io/installation) to bootstrap the example:
+Install dependencies:
 
 ```bash
-pnpm create next-app --example https://github.com/vercel/examples/tree/main/solutions/blog blog
+pnpm install
 ```
 
-Then, run Next.js in development mode:
+Run the development server:
 
 ```bash
 pnpm dev
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/templates) ([Documentation](https://nextjs.org/docs/app/building-your-application/deploying)).
+Build for production:
+
+```bash
+pnpm build
+```
+
+Deploy to Cloudflare:
+
+```bash
+pnpm deploy
+```
