@@ -1,4 +1,8 @@
+'use client'
+
 import { PortfolioCarousel } from 'app/components/portfolio-carousel'
+import { OrbitalClock } from 'app/components/ui/orbital-clock'
+import { useEffect, useState } from 'react'
 
 const portfolioProjects = [
   {
@@ -34,20 +38,44 @@ const portfolioProjects = [
 ]
 
 export default function Page() {
+  const [isVisible, setIsVisible] = useState(true)
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      setScrollY(currentScrollY)
+      // Hide clock when scrolled down more than 100px
+      setIsVisible(currentScrollY < 100)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <section className="w-full">
-      <div className="mb-8">
-        <h1 className="text-2xl font-semibold tracking-tighter mb-4">
-          I build experiences—both digital and physical—for people who want more from life.
-        </h1>
-        <p className="mb-4 text-neutral-600 dark:text-neutral-400">
-          Engineering background. Founder at ARK Experiences. Engineer, Developer and Entrepreneur. Human.
-        </p>
-        <p className="text-neutral-600 dark:text-neutral-400">
-          I'm a generalist builder who bridges the gap between physical experiences and digital infrastructure. My foundation is in rigorous engineering, but my passion is human-centric product design. I don't just build software—I architect experiences that feel human.
-        </p>
+    <>
+      <div 
+        className={`fixed top-8 right-4 md:right-8 z-40 transition-opacity duration-300 ${
+          isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <OrbitalClock />
       </div>
-      <PortfolioCarousel projects={portfolioProjects} />
-    </section>
+      <section className="w-full">
+        <div className="mb-8">
+          <h1 className="text-2xl font-semibold tracking-tighter mb-4">
+            I build experiences—both digital and physical—for people who want more from life.
+          </h1>
+          <p className="mb-4 text-neutral-600 dark:text-neutral-400">
+            Engineering background. Founder at ARK Experiences. Engineer, Developer and Entrepreneur. Human.
+          </p>
+          <p className="text-neutral-600 dark:text-neutral-400">
+            I'm a generalist builder who bridges the gap between physical experiences and digital infrastructure. My foundation is in rigorous engineering, but my passion is human-centric product design. I don't just build software—I architect experiences that feel human.
+          </p>
+        </div>
+        <PortfolioCarousel projects={portfolioProjects} />
+      </section>
+    </>
   )
 }
