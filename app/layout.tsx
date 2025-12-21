@@ -1,8 +1,6 @@
 import './global.css'
 import type { Metadata } from 'next'
-// @ts-expect-error - TypeScript has a resolution issue with geist font module types
 import { GeistSans } from 'geist/font/sans'
-// @ts-expect-error - TypeScript has a resolution issue with geist font module types  
 import { GeistMono } from 'geist/font/mono'
 import { Navbar } from './components/nav'
 
