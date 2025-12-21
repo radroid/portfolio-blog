@@ -17,5 +17,11 @@
         "invocation_logs": true,
         "persist": true
       }
-    }
+    },
+    "routes": [
+      {
+        "pattern": "curlycloud.dev",
+        "custom_domain": true
+      }
+    ]
   }

@@ -24,20 +24,12 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
   const slidesContainerRef = useRef<HTMLDivElement>(null)
   const isDarkTheme = useIsDarkTheme()
 
-  // Theme-aware shadow values
-  const buttonShadows = useMemo(() => {
+  // Simple theme-aware shadow
+  const buttonShadow = useMemo(() => {
     if (isDarkTheme) {
-      // Lighter shadow for dark theme
-      return {
-        default: '0 8px 24px rgba(255, 255, 255, 0.12), 0 4px 12px rgba(255, 255, 255, 0.1), 0 2px 6px rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.15)',
-        hover: '0 12px 32px rgba(255, 255, 255, 0.15), 0 6px 16px rgba(255, 255, 255, 0.12), 0 2px 8px rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.2)',
-      }
+      return '0 2px 8px rgba(255, 255, 255, 0.1)'
     } else {
-      // Darker shadow for light theme
-      return {
-        default: '0 8px 24px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.15)',
-        hover: '0 12px 32px rgba(0, 0, 0, 0.6), 0 6px 16px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2)',
-      }
+      return '0 2px 8px rgba(0, 0, 0, 0.2)'
     }
   }, [isDarkTheme])
 
@@ -132,88 +124,82 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
 
   return (
     <div className="w-full aspect-[16/10] min-h-[600px] sm:min-h-[700px] flex flex-col relative">
-      <div className="flex-1 relative">
-        {/* Previous Button */}
-        <button
-          onClick={() => {
-            goToPrevious()
-            setIsPaused(true)
-            setTimeout(() => setIsPaused(false), 6000) // Resume after 10 seconds
-          }}
-          className="absolute left-2 sm:left-0 top-0 h-full sm:-translate-x-16 z-10 px-3 sm:px-4 rounded-lg backdrop-blur-sm transition-all duration-300 flex items-center justify-center"
-          style={{
-            backgroundColor: 'rgba(var(--card), 0.9)',
-            color: 'rgb(var(--foreground))',
-            boxShadow: buttonShadows.default,
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(var(--card), 1)'
-            e.currentTarget.style.boxShadow = buttonShadows.hover
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(var(--card), 0.9)'
-            e.currentTarget.style.boxShadow = buttonShadows.default
-          }}
-          aria-label="Previous project"
+      {/* Previous Button */}
+      <button
+        onClick={() => {
+          goToPrevious()
+          setIsPaused(true)
+          setTimeout(() => setIsPaused(false), 6000) // Resume after 10 seconds
+        }}
+        className="absolute left-2 sm:left-0 top-1/2 -translate-y-1/2 sm:-translate-x-12 z-10 p-2 rounded-full backdrop-blur-sm transition-colors shadow-lg"
+        style={{
+          backgroundColor: 'rgba(var(--card), 0.9)',
+          color: 'rgb(var(--foreground))',
+          boxShadow: buttonShadow,
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = 'rgba(var(--card), 1)'
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = 'rgba(var(--card), 0.9)'
+        }}
+        aria-label="Previous project"
+      >
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
 
-        {/* Next Button */}
-        <button
-          onClick={() => {
-            goToNext()
-            setIsPaused(true)
-            setTimeout(() => setIsPaused(false), 6000) // Resume after 6 seconds
-          }}
-          className="absolute right-2 sm:right-0 top-0 h-full sm:translate-x-16 z-10 px-3 sm:px-4 rounded-lg backdrop-blur-sm transition-all duration-300 flex items-center justify-center"
-          style={{
-            backgroundColor: 'rgba(var(--card), 0.9)',
-            color: 'rgb(var(--foreground))',
-            boxShadow: buttonShadows.default,
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(var(--card), 1)'
-            e.currentTarget.style.boxShadow = buttonShadows.hover
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(var(--card), 0.9)'
-            e.currentTarget.style.boxShadow = buttonShadows.default
-          }}
-          aria-label="Next project"
+      {/* Next Button */}
+      <button
+        onClick={() => {
+          goToNext()
+          setIsPaused(true)
+          setTimeout(() => setIsPaused(false), 6000) // Resume after 6 seconds
+        }}
+        className="absolute right-2 sm:right-0 top-1/2 -translate-y-1/2 sm:translate-x-12 z-10 p-2 rounded-full backdrop-blur-sm transition-colors shadow-lg"
+        style={{
+          backgroundColor: 'rgba(var(--card), 0.9)',
+          color: 'rgb(var(--foreground))',
+          boxShadow: buttonShadow,
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = 'rgba(var(--card), 1)'
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = 'rgba(var(--card), 0.9)'
+        }}
+        aria-label="Next project"
+      >
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
 
-        {/* Main Carousel Container */}
         <div
-          className="h-full relative overflow-hidden rounded-lg transition-colors duration-300 shadow-lg"
+          className="flex-1 relative overflow-hidden rounded-lg transition-colors duration-300 shadow-lg"
           style={{
-            backgroundColor: 'rgb(var(--background))',
+            backgroundColor: 'rgb(var(--muted))',
             boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
           }}
           onMouseEnter={() => setIsPaused(true)}
@@ -272,7 +258,6 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
             ))}
           </div>
         </div>
-      </div>
 
       {/* Dots Navigation */}
       <div className="flex justify-center gap-2 mt-4 sm:mt-6">
