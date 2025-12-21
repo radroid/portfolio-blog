@@ -1,6 +1,7 @@
 'use client'
 
 import { Avatar, AvatarImage, AvatarFallback } from '@/app/components/ui/avatar'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/app/components/ui/tooltip'
 import { Diagnostics } from '@/app/components/diagnostics'
 
 // Social Media Icons
@@ -67,10 +68,26 @@ export default function Footer() {
       <div className="flex flex-col items-start gap-4 mt-8">
         <div className="flex flex-row items-center justify-between w-full gap-4">
           <div className="flex flex-row items-center gap-4">
-            <Avatar className="h-10 w-10">
-              <AvatarImage src="/raj-avatar.png" alt="Raj" />
-              <AvatarFallback>R</AvatarFallback>
-            </Avatar>
+            <TooltipProvider delayDuration={0}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href="https://maps.app.goo.gl/eWDPAqVgfkHyWv4T9"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-all hover:opacity-70 outline-none cursor-pointer"
+                  >
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage src="/raj-avatar.png" alt="Raj" />
+                      <AvatarFallback>R</AvatarFallback>
+                    </Avatar>
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>I love strawberry matcha</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
             <div className="flex flex-row items-center gap-3">
               {socialLinks.map(({ name, href, icon: Icon }) => (
                 <a
@@ -90,7 +107,7 @@ export default function Footer() {
             <Diagnostics />
           </div>
         </div>
-        <p 
+        <p
           className="mt-4"
           style={{ color: 'rgb(var(--muted-foreground))' }}
         >

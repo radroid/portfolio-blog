@@ -47,6 +47,8 @@ html[data-theme='morning'] {
   --chart-3: 254 240 138;
   --chart-4: 255 237 213;
   --chart-5: 255 251 235;
+  /* Tooltip shadow */
+  --tooltip-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   /* Clock colors */
   --orb-primary: 245 158 11;
   --orb-marker-strong: 30 58 138;
@@ -86,6 +88,8 @@ html[data-theme='afternoon'] {
   --chart-3: 255 251 235;
   --chart-4: 255 253 247;
   --chart-5: 255 255 255;
+  /* Tooltip shadow */
+  --tooltip-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   /* Clock colors */
   --orb-primary: 250 204 21;
   --orb-marker-strong: 15 23 42;
@@ -125,6 +129,8 @@ html[data-theme='night'] {
   --chart-3: 252 211 77;
   --chart-4: 254 240 138;
   --chart-5: 255 251 235;
+  /* Tooltip shadow */
+  --tooltip-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(248, 250, 252, 0.1);
   /* Clock colors */
   --orb-primary: 251 146 60;
   --orb-marker-strong: 248 250 252;
@@ -162,6 +168,8 @@ html[data-theme='starry'] {
   --chart-3: 196 181 253;
   --chart-4: 221 214 254;
   --chart-5: 237 233 254;
+  /* Tooltip shadow */
+  --tooltip-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(248, 250, 252, 0.1);
   /* Clock colors */
   --orb-primary: 167 139 250;
   --orb-marker-strong: 248 250 252;
@@ -199,6 +207,8 @@ html:not([data-theme]) {
   --chart-3: 254 240 138;
   --chart-4: 255 237 213;
   --chart-5: 255 251 235;
+  /* Tooltip shadow */
+  --tooltip-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   /* Clock colors */
   --orb-primary: 245 158 11;
   --orb-marker-strong: 30 58 138;

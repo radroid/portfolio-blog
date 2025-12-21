@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 interface PortfolioProject {
   id: string
@@ -16,6 +16,8 @@ interface PortfolioCarouselProps {
 
 export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1))
@@ -28,6 +30,27 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
   const goToSlide = (index: number) => {
     setCurrentIndex(index)
   }
+
+  // Auto-rotation effect
+  useEffect(() => {
+    if (projects.length <= 1 || isPaused) {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+        intervalRef.current = null
+      }
+      return
+    }
+
+    intervalRef.current = setInterval(() => {
+      goToNext()
+    }, 5000) // Rotate every 5 seconds
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+    }
+  }, [currentIndex, isPaused, projects.length])
 
   if (projects.length === 0) {
     return (
