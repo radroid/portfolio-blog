@@ -196,68 +196,68 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
         </svg>
       </button>
 
+      <div
+        className="flex-1 relative overflow-hidden rounded-lg transition-colors duration-300 shadow-lg"
+        style={{
+          backgroundColor: 'rgb(var(--background))',
+          boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+        }}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {/* Slides Container */}
         <div
-          className="flex-1 relative overflow-hidden rounded-lg transition-colors duration-300 shadow-lg"
+          ref={slidesContainerRef}
+          className="flex h-full transition-transform duration-500 ease-in-out"
           style={{
-            backgroundColor: 'rgb(var(--muted))',
-            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            transform: `translateX(-${currentIndex * 100}%)`
           }}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Slides Container */}
-          <div
-            ref={slidesContainerRef}
-            className="flex h-full transition-transform duration-500 ease-in-out"
-            style={{
-              transform: `translateX(-${currentIndex * 100}%)`
-            }}
-          >
-            {extendedProjects.map((project, index) => (
+          {extendedProjects.map((project, index) => (
+            <div
+              key={`${project.id}-${index}`}
+              className="min-w-full h-full flex flex-col"
+            >
+              {/* Project Title Bar */}
               <div
-                key={`${project.id}-${index}`}
-                className="min-w-full h-full flex flex-col"
+                className="px-4 sm:px-6 py-3 sm:py-4 transition-colors duration-300 backdrop-blur-sm"
+                style={{
+                  backgroundColor: 'rgb(var(--background))',
+                }}
               >
-                {/* Project Title Bar */}
-                <div
-                  className="px-4 sm:px-6 py-3 sm:py-4 transition-colors duration-300 backdrop-blur-sm"
-                  style={{
-                    backgroundColor: 'rgb(var(--background))',
-                  }}
+                <h3
+                  className="text-lg sm:text-xl font-semibold tracking-tight transition-colors duration-300"
+                  style={{ color: 'rgb(var(--foreground))' }}
                 >
-                  <h3
-                    className="text-lg sm:text-xl font-semibold tracking-tight transition-colors duration-300"
-                    style={{ color: 'rgb(var(--foreground))' }}
+                  {project.title}
+                </h3>
+                {project.description && (
+                  <p
+                    className="text-xs sm:text-sm mt-1 transition-colors duration-300"
+                    style={{ color: 'rgb(var(--muted-foreground))' }}
                   >
-                    {project.title}
-                  </h3>
-                  {project.description && (
-                    <p
-                      className="text-xs sm:text-sm mt-1 transition-colors duration-300"
-                      style={{ color: 'rgb(var(--muted-foreground))' }}
-                    >
-                      {project.description}
-                    </p>
-                  )}
-                </div>
-
-                {/* Iframe Container */}
-                <div
-                  className="flex-1 relative transition-colors duration-300"
-                  style={{ backgroundColor: 'rgb(var(--card))' }}
-                >
-                  <iframe
-                    src={project.url}
-                    className="w-full h-full border-0 rounded-xl"
-                    title={project.title}
-                    loading="lazy"
-                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
-                  />
-                </div>
+                    {project.description}
+                  </p>
+                )}
               </div>
-            ))}
-          </div>
+
+              {/* Iframe Container */}
+              <div
+                className="flex-1 relative transition-colors duration-300"
+                style={{ backgroundColor: 'rgb(var(--card))' }}
+              >
+                <iframe
+                  src={project.url}
+                  className="w-full h-full border-0 rounded-xl"
+                  title={project.title}
+                  loading="lazy"
+                  sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
+                />
+              </div>
+            </div>
+          ))}
         </div>
+      </div>
 
       {/* Dots Navigation */}
       <div className="flex justify-center gap-2 mt-4 sm:mt-6">
