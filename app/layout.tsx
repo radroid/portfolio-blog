@@ -4,7 +4,6 @@ import { JetBrains_Mono } from 'next/font/google'
 import { Navbar } from './components/nav'
 
 import Footer from './components/footer'
-import { Diagnostics } from './components/diagnostics'
 import { ThemeProvider } from './components/theme-provider'
 import { ClockWrapper } from './components/clock-wrapper'
 import { baseUrl } from './sitemap'
@@ -63,7 +62,6 @@ export default function RootLayout({
         <ThemeProvider />
         <ClockWrapper />
         <main className="flex-auto min-w-0 flex flex-col">
-          <Diagnostics />
           <div className="max-w-7xl mx-auto w-full px-4 md:px-8 pt-14 sm:pt-24 pb-4 sm:pb-8">
             <Navbar />
             {children}

@@ -218,7 +218,7 @@ export function Diagnostics() {
 
   if (!data) {
     return (
-      <div className="fixed bottom-4 right-4 z-50">
+      <div className="relative">
         <div 
           className="rounded-lg p-3 text-xs font-mono shadow-lg transition-colors duration-300"
           style={{
@@ -233,7 +233,7 @@ export function Diagnostics() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="rounded-lg p-3 text-xs font-mono shadow-lg transition-all duration-300"
@@ -266,7 +266,7 @@ export function Diagnostics() {
 
       {isOpen && (
         <div 
-          className="absolute bottom-full right-0 mb-2 rounded-lg p-4 text-xs font-mono max-w-md max-h-[60vh] overflow-y-auto shadow-lg transition-colors duration-300"
+          className="absolute bottom-full right-0 mb-2 rounded-lg p-4 text-xs font-mono max-w-md max-h-[60vh] overflow-y-auto shadow-lg transition-colors duration-300 z-50"
           style={{
             backgroundColor: 'rgb(var(--card))',
           }}

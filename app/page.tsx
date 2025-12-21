@@ -13,13 +13,13 @@ const portfolioProjects = [
     id: 'bridger',
     title: 'Bridger',
     url: 'https://bridger.atawalk.ca/',
-    description: 'Generate beautiful covered bridge images with AI. Customize every aspect of your bridge design with advanced AI technology.',
+    description: 'Generate beautiful covered bridge images with AI. Customize every aspect of your bridge design with AI.',
   },
   {
     id: 'stella56',
     title: 'Stella 56 Diamonds',
     url: 'https://www.stella56diamonds.com/',
-    description: 'Manufacturer-direct lab-grown diamonds. IGI/GIA-certified, ethically sourced, with AI-optimized cutting technology.',
+    description: 'Manufacturer-direct lab-grown diamonds. IGI/GIA-certified, ethically sourced, carbon neutral.',
   },
   {
     id: 'playground',
@@ -41,10 +41,10 @@ export default function Page() {
       <section className="w-full">
         <div className="mb-8">
           <h1 className="text-xl sm:text-2xl font-semibold tracking-tighter mb-4">
-            I build experiences—both digital and physical—for people who want more from life.
+            I build experiences—both digital and physical—for people who appreciate quality.
           </h1>
           <p className="mb-4" style={{ color: 'rgb(var(--muted-foreground))' }}>
-            Engineering background. Founder at ARK Experiences. Engineer, Developer and Entrepreneur. Human.
+            Engineering background. Founder at ARK Experiences. Developer, Entrepreneur and Human.
           </p>
           <p style={{ color: 'rgb(var(--muted-foreground))' }}>
             I'm a generalist builder who bridges the gap between physical experiences and digital infrastructure. My foundation is in rigorous engineering, but my passion is human-centric product design. I don't just build software—I architect experiences that feel human.
