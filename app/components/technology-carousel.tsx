@@ -185,22 +185,8 @@ export function TechnologyCarousel({
           </h2>
         </div>
       )}
-      <div className="pt-2">
-        <div className="relative mx-auto flex items-center justify-center">
-          {/* Left fade gradient */}
-          <div
-            className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
-            style={{
-              background: `linear-gradient(to right, rgb(var(--background)) 0%, rgba(var(--background), 0.95) 20%, rgba(var(--background), 0.8) 40%, rgba(var(--background), 0.4) 70%, transparent 100%)`,
-            }}
-          />
-          {/* Right fade gradient */}
-          <div
-            className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
-            style={{
-              background: `linear-gradient(to left, rgb(var(--background)) 0%, rgba(var(--background), 0.95) 20%, rgba(var(--background), 0.8) 40%, rgba(var(--background), 0.4) 70%, transparent 100%)`,
-            }}
-          />
+      <div className="pt-2 -mx-4 md:-mx-8">
+        <div className="relative w-full flex items-center justify-center">
           <Carousel
             opts={{
               loop: true,
@@ -208,7 +194,7 @@ export function TechnologyCarousel({
             }}
             plugins={[
               AutoScroll({
-                speed: 0.5,
+                speed: 0.7,
                 stopOnInteraction: false,
                 stopOnMouseEnter: true,
                 stopOnFocusIn: false,
