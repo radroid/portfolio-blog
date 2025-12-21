@@ -184,14 +184,14 @@ export function Diagnostics() {
       const utcTime = now.toISOString().substring(11, 19) // HH:MM:SS
       const localTime = now.toTimeString().substring(0, 8) // HH:MM:SS
       const unixTime = Math.floor(now.getTime() / 1000)
-      
+
       // Get timezone offset
       const offset = -now.getTimezoneOffset()
       const offsetHours = Math.floor(Math.abs(offset) / 60)
       const offsetMinutes = Math.abs(offset) % 60
       const offsetSign = offset >= 0 ? '+' : '-'
       const zone = `GMT${offsetSign}${offsetHours.toString().padStart(2, '0')}:${offsetMinutes.toString().padStart(2, '0')}`
-      
+
       setTime({
         utc: utcTime,
         local: localTime,
@@ -203,6 +203,15 @@ export function Diagnostics() {
     // Initialize time
     updateTime()
 
+    // Update viewport on resize
+    const updateViewport = () => {
+      setData((prev) => {
+        if (!prev) return prev
+        return { ...prev, viewport: `${window.innerWidth}x${window.innerHeight}` }
+      })
+    }
+    window.addEventListener('resize', updateViewport)
+
     // Update uptime and time every second
     const interval = setInterval(() => {
       setData((prev) => {
@@ -213,13 +222,16 @@ export function Diagnostics() {
       updateTime()
     }, 1000)
 
-    return () => clearInterval(interval)
+    return () => {
+      clearInterval(interval)
+      window.removeEventListener('resize', updateViewport)
+    }
   }, [])
 
   if (!data) {
     return (
       <div className="relative">
-        <div 
+        <div
           className="rounded-lg p-3 text-xs font-mono shadow-lg transition-colors duration-300"
           style={{
             backgroundColor: 'rgb(var(--card))',
@@ -265,13 +277,13 @@ export function Diagnostics() {
       </button>
 
       {isOpen && (
-        <div 
+        <div
           className="absolute bottom-full right-0 mb-2 rounded-lg p-4 text-xs font-mono max-w-md max-h-[60vh] overflow-y-auto shadow-lg transition-colors duration-300 z-50"
           style={{
             backgroundColor: 'rgb(var(--card))',
           }}
         >
-          <div 
+          <div
             className="mb-3 font-semibold text-sm border-b pb-2"
             style={{
               color: 'rgb(var(--foreground))',
@@ -371,7 +383,7 @@ export function Diagnostics() {
               <span style={{ color: 'rgb(var(--muted-foreground))' }}>STAT:</span>
               <span style={{ color: 'rgb(var(--foreground))' }}>{data.stat}</span>
             </div>
-            <div 
+            <div
               className="mt-3 pt-3"
               style={{
                 borderTopColor: 'rgba(var(--border), 0.5)',
@@ -385,9 +397,9 @@ export function Diagnostics() {
               </div>
             </div>
           </div>
-          
+
           {time && (
-            <div 
+            <div
               className="mt-4 pt-4"
               style={{
                 borderTopColor: 'rgba(var(--border), 0.5)',
@@ -395,7 +407,7 @@ export function Diagnostics() {
                 borderTopStyle: 'solid',
               }}
             >
-              <div 
+              <div
                 className="mb-2 font-semibold text-sm border-b pb-2"
                 style={{
                   color: 'rgb(var(--foreground))',
