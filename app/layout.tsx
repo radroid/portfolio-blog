@@ -1,7 +1,6 @@
 import './global.css'
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
+import { JetBrains_Mono } from 'next/font/google'
 import { Navbar } from './components/nav'
 
 import Footer from './components/footer'
@@ -42,6 +41,12 @@ export const metadata: Metadata = {
   },
 }
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+})
+
 const cx = (...classes) => classes.filter(Boolean).join(' ')
 
 export default function RootLayout({
@@ -52,10 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cx(
-        GeistSans.variable,
-        GeistMono.variable
-      )}
+      className={cx(jetbrainsMono.variable)}
     >
       <body className="antialiased min-h-screen transition-colors duration-300">
         <ThemeProvider />

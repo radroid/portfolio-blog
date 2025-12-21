@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Antic&family=Montserrat:wght@400;500;600;700&family=Oxanium:wght@400;500;600;700&family=Merriweather:wght@400;700&family=Fira+Code:wght@400;500;600&display=swap');
 
 ::selection {
   background-color: #47a3f3;
@@ -15,6 +16,9 @@
   --sh-jsxliterals: #6266d1;
   --sh-property: #e25a1c;
   --sh-entity: #e25a1c;
+  --font-sans: 'Antic', ui-sans-serif, sans-serif, system-ui;
+  --font-serif: 'Signifier', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 }
 
 /* Morning Theme (6 AM - 12 PM) - Fresh, warm sunrise tones */
@@ -50,6 +54,10 @@ html[data-theme='morning'] {
   --orb-center: 30 58 138;
   --orb-date: 107 114 128;
   --orb-clock-bg: 255 255 255;
+  /* Daytime fonts */
+  --font-sans: 'Oxanium', sans-serif;
+  --font-serif: 'Merriweather', serif;
+  --font-mono: 'Fira Code', monospace;
 }
 
 /* Afternoon Theme (12 PM - 6 PM) - Vibrant, energetic daylight */
@@ -85,6 +93,10 @@ html[data-theme='afternoon'] {
   --orb-center: 15 23 42;
   --orb-date: 107 114 128;
   --orb-clock-bg: 255 255 255;
+  /* Daytime fonts */
+  --font-sans: 'Oxanium', sans-serif;
+  --font-serif: 'Merriweather', serif;
+  --font-mono: 'Fira Code', monospace;
 }
 
 /* Night Theme (6 PM - 12 AM) - Warm evening, dusk tones */
@@ -120,6 +132,8 @@ html[data-theme='night'] {
   --orb-center: 248 250 252;
   --orb-date: 148 163 184;
   --orb-clock-bg: 15 23 42;
+  /* Night fonts */
+  --font-sans: 'Montserrat', sans-serif;
 }
 
 /* Starry Theme (12 AM - 6 AM) - Deep night sky with star accents */
@@ -155,6 +169,8 @@ html[data-theme='starry'] {
   --orb-center: 248 250 252;
   --orb-date: 148 163 184;
   --orb-clock-bg: 2 6 23;
+  /* Night fonts */
+  --font-sans: 'Montserrat', sans-serif;
 }
 
 /* Default to morning theme if no theme is set */
@@ -206,6 +222,7 @@ html {
   background-color: rgb(var(--background));
   color: rgb(var(--foreground));
   transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: var(--font-sans);
 }
 
 .prose .anchor {
