@@ -7,6 +7,7 @@ interface PortfolioProject {
   title: string
   url: string
   description?: string
+  technologies?: string[]
 }
 
 interface PortfolioCarouselProps {
@@ -30,14 +31,14 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
 
   if (projects.length === 0) {
     return (
-      <div className="w-full h-[70vh] sm:h-[85vh] flex items-center justify-center text-neutral-500">
+      <div className="w-full aspect-[16/10] min-h-[600px] sm:min-h-[700px] flex items-center justify-center text-neutral-500">
         <p>No projects to display</p>
       </div>
     )
   }
 
   return (
-    <div className="w-full h-[70vh] sm:h-[85vh] flex flex-col relative">
+    <div className="w-full aspect-[16/10] min-h-[600px] sm:min-h-[700px] flex flex-col relative">
       {/* Previous Button - Outside the carousel */}
       <button
         onClick={goToPrevious}
