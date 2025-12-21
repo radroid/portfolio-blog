@@ -29,6 +29,9 @@ const portfolioProjects = [
       'sonner',
       'cmdk',
       'class-variance-authority',
+      'HTML5',
+      'Vercel',
+      'Supabase'
     ],
   },
   {
@@ -62,6 +65,8 @@ const portfolioProjects = [
       'CORS',
       'JWT',
       'Multer',
+      'ChatGPT',
+      'Digital Ocean',
     ],
   },
   {
@@ -90,6 +95,8 @@ const portfolioProjects = [
       'Sonner',
       'Vaul',
       'Biome',
+      'Cloudflare',
+      'Claude AI'
     ],
   },
   {
@@ -129,7 +136,12 @@ const portfolioProjects = [
     title: 'Penguin Mail',
     url: 'https://www.penguinmail.app/',
     description: 'A modern email client designed to revolutionize email usage in 2025. AI-driven filtering and enhanced user experience.',
-    technologies: [],
+    technologies: [
+      'Google Gemini',
+      'Langchain',
+      'Google Cloud',
+      'Docker'
+    ],
   },
 ]
 

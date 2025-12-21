@@ -244,7 +244,7 @@ export function OrbitalClock() {
           // Desktop: slide up from bottom (negative translateY when hidden)
           transform: isMobile
             ? (isHovered ? 'translateX(0) translateY(0)' : 'translateX(10px) translateY(0)')
-            : (isHovered ? 'translateX(-10%) translateY(0)' : 'translateX(-10%) translateY(-10px)'),
+            : (isHovered ? 'translateX(-50%) translateY(0)' : 'translateX(-50%) translateY(-10px)'),
           opacity: isHovered ? 1 : 0,
           color: isHovered ? `rgb(var(--orb-primary))` : `rgba(var(--orb-date), 0.9)`,
         }}
