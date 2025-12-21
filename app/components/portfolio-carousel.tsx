@@ -30,18 +30,18 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
 
   if (projects.length === 0) {
     return (
-      <div className="w-full h-[85vh] flex items-center justify-center text-neutral-500">
+      <div className="w-full h-[70vh] sm:h-[85vh] flex items-center justify-center text-neutral-500">
         <p>No projects to display</p>
       </div>
     )
   }
 
   return (
-    <div className="w-full h-[85vh] flex flex-col relative">
+    <div className="w-full h-[70vh] sm:h-[85vh] flex flex-col relative">
       {/* Previous Button - Outside the carousel */}
       <button
         onClick={goToPrevious}
-        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-10 p-2 rounded-full backdrop-blur-sm transition-colors shadow-lg"
+        className="absolute left-2 sm:left-0 top-1/2 -translate-y-1/2 sm:-translate-x-12 z-10 p-2 rounded-full backdrop-blur-sm transition-colors shadow-lg"
         style={{
           backgroundColor: 'rgba(var(--card), 0.9)',
           color: 'rgb(var(--foreground))',
@@ -72,7 +72,7 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
       {/* Next Button - Outside the carousel */}
       <button
         onClick={goToNext}
-        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-10 p-2 rounded-full backdrop-blur-sm transition-colors shadow-lg"
+        className="absolute right-2 sm:right-0 top-1/2 -translate-y-1/2 sm:translate-x-12 z-10 p-2 rounded-full backdrop-blur-sm transition-colors shadow-lg"
         style={{
           backgroundColor: 'rgba(var(--card), 0.9)',
           color: 'rgb(var(--foreground))',
@@ -120,20 +120,20 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
             >
               {/* Project Title Bar */}
               <div 
-                className="px-6 py-4 transition-colors duration-300"
+                className="px-4 sm:px-6 py-3 sm:py-4 transition-colors duration-300"
                 style={{
                   backgroundColor: 'rgb(var(--card))',
                 }}
               >
                 <h3 
-                  className="text-xl font-semibold tracking-tight transition-colors duration-300"
+                  className="text-lg sm:text-xl font-semibold tracking-tight transition-colors duration-300"
                   style={{ color: 'rgb(var(--card-foreground))' }}
                 >
                   {project.title}
                 </h3>
                 {project.description && (
                   <p 
-                    className="text-sm mt-1 transition-colors duration-300"
+                    className="text-xs sm:text-sm mt-1 transition-colors duration-300"
                     style={{ color: 'rgb(var(--muted-foreground))' }}
                   >
                     {project.description}
@@ -160,7 +160,7 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
       </div>
 
       {/* Dots Navigation */}
-      <div className="flex justify-center gap-2 mt-6">
+      <div className="flex justify-center gap-2 mt-4 sm:mt-6">
         {projects.map((_, index) => (
           <button
             key={index}

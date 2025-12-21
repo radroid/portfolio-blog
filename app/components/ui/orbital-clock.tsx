@@ -8,6 +8,7 @@ export function OrbitalClock() {
   const [time, setTime] = useState(new Date())
   const [isHovered, setIsHovered] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [isMobile, setIsMobile] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -17,7 +18,18 @@ export function OrbitalClock() {
     const interval = setInterval(() => {
       setTime(new Date())
     }, 50)
-    return () => clearInterval(interval)
+    
+    // Check if mobile on mount and resize
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => {
+      clearInterval(interval)
+      window.removeEventListener('resize', checkMobile)
+    }
   }, [])
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -64,7 +76,7 @@ export function OrbitalClock() {
   // Prevent hydration mismatch by only rendering after mount
   if (!mounted) {
     return (
-      <div className="relative flex items-center justify-center w-32 h-32">
+      <div className="relative flex items-center justify-center w-24 h-24 sm:w-32 sm:h-32">
         <div 
           className="absolute inset-2 rounded-full shadow-xl transition-colors duration-300"
           style={{
@@ -97,7 +109,7 @@ export function OrbitalClock() {
     >
       {/* Main clock container - smaller size */}
       <div
-        className="relative w-32 h-32 transition-transform duration-300 ease-out"
+        className="relative w-24 h-24 sm:w-32 sm:h-32 transition-transform duration-300 ease-out"
         style={{
           transform: `rotateX(${-mousePos.y}deg) rotateY(${mousePos.x}deg)`,
         }}
@@ -224,11 +236,15 @@ export function OrbitalClock() {
         </div>
       </div>
 
-      {/* Date and timezone reveal on hover */}
+      {/* Date and timezone reveal on hover - left on mobile, below on desktop */}
       <div
-        className="absolute w-full flex flex-col items-center justify-center -bottom-12 left-1/2 font-mono text-xs tracking-[0.3em] uppercase transition-all duration-500"
+        className="absolute flex flex-col items-end justify-center right-full mr-1 sm:right-auto sm:left-1/2 sm:mr-0 sm:-bottom-12 sm:items-center font-mono text-xs tracking-[0.3em] uppercase transition-all duration-500 whitespace-nowrap"
         style={{
-          transform: `translateX(-50%) translateY(${isHovered ? 0 : -10}px)`,
+          // Mobile: slide in from right (positive translateX when hidden, comes from left side)
+          // Desktop: slide up from bottom (negative translateY when hidden)
+          transform: isMobile
+            ? (isHovered ? 'translateX(0) translateY(0)' : 'translateX(10px) translateY(0)')
+            : (isHovered ? 'translateX(-10%) translateY(0)' : 'translateX(-10%) translateY(-10px)'),
           opacity: isHovered ? 1 : 0,
           color: isHovered ? `rgb(var(--orb-primary))` : `rgba(var(--orb-date), 0.9)`,
         }}

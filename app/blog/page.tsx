@@ -9,7 +9,7 @@ export default function Page() {
   return (
     <section>
       <h1 
-        className="font-semibold text-2xl mb-8 tracking-tighter transition-colors duration-300"
+        className="font-semibold text-xl sm:text-2xl mb-6 sm:mb-8 tracking-tighter transition-colors duration-300"
         style={{ color: 'rgb(var(--foreground))' }}
       >
         Thinking

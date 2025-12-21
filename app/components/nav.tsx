@@ -17,13 +17,13 @@ const navItems = {
 
 export function Navbar() {
   return (
-    <aside className="-ml-[8px] mb-16 tracking-tight">
+    <aside className="-ml-[8px] mb-8 sm:mb-16 tracking-tight">
       <div className="lg:sticky lg:top-20">
         <nav
           className="flex flex-row items-center relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
           id="nav"
         >
-          <div className="flex flex-row items-center space-x-6 pr-10">
+          <div className="flex flex-row items-center space-x-4 sm:space-x-6 pr-4 sm:pr-10">
             <HoverCard openDelay={100} closeDelay={100}>
               <HoverCardTrigger asChild>
                 <button className="transition-all hover:opacity-70 outline-none cursor-pointer">
@@ -35,7 +35,7 @@ export function Navbar() {
               </HoverCardTrigger>
               <HoverCardContent 
                 align="start" 
-                className="w-auto p-5 border-0 shadow-none bg-background"
+                className="w-auto max-w-[calc(100vw-2rem)] sm:max-w-none p-4 sm:p-5 border-0 shadow-none bg-background"
                 style={{ backgroundColor: 'rgb(var(--background))' }}
               >
                 <div className="flex flex-col gap-2">

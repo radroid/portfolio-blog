@@ -19,7 +19,7 @@ export function ClockWrapper() {
 
   return (
     <div 
-      className={`fixed top-8 right-4 md:right-8 z-40 transition-opacity duration-300 ${
+      className={`fixed top-4 right-2 sm:top-8 sm:right-4 md:right-8 z-40 transition-opacity duration-300 ${
         isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
     >

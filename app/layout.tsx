@@ -1,10 +1,11 @@
 import './global.css'
 import type { Metadata } from 'next'
+// @ts-expect-error - TypeScript has a resolution issue with geist font module types
 import { GeistSans } from 'geist/font/sans'
+// @ts-expect-error - TypeScript has a resolution issue with geist font module types  
 import { GeistMono } from 'geist/font/mono'
 import { Navbar } from './components/nav'
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
+
 import Footer from './components/footer'
 import { Diagnostics } from './components/diagnostics'
 import { ThemeProvider } from './components/theme-provider'
@@ -63,13 +64,12 @@ export default function RootLayout({
         <ClockWrapper />
         <main className="flex-auto min-w-0 flex flex-col">
           <Diagnostics />
-          <div className="max-w-7xl mx-auto w-full px-4 md:px-8 py-8">
+          <div className="max-w-7xl mx-auto w-full px-4 md:px-8 pt-14 sm:pt-24 pb-4 sm:pb-8">
             <Navbar />
             {children}
             <Footer />
           </div>
-          <Analytics />
-          <SpeedInsights />
+
         </main>
       </body>
     </html>

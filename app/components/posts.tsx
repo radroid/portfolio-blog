@@ -24,7 +24,7 @@ export function BlogPosts() {
           >
             <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
               <p 
-                className="w-[100px] tabular-nums transition-colors duration-300"
+                className="w-full md:w-[100px] tabular-nums transition-colors duration-300 mb-1 md:mb-0"
                 style={{ color: 'rgb(var(--muted-foreground))' }}
               >
                 {formatDate(post.metadata.publishedAt, false)}

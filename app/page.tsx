@@ -40,7 +40,7 @@ export default function Page() {
     <>
       <section className="w-full">
         <div className="mb-8">
-          <h1 className="text-2xl font-semibold tracking-tighter mb-4">
+          <h1 className="text-xl sm:text-2xl font-semibold tracking-tighter mb-4">
             I build experiences—both digital and physical—for people who want more from life.
           </h1>
           <p className="mb-4" style={{ color: 'rgb(var(--muted-foreground))' }}>
