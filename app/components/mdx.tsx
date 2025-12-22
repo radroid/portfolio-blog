@@ -138,7 +138,7 @@ let components: any = {
   table: Table,
 }
 
-export function CustomMDX({ source, ...props }: { source: string; [key: string]: any }) {
+export function CustomMDX({ source, ...props }: { source: string;[key: string]: any }) {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}

@@ -81,14 +81,14 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
   return (
     <section>
       <JsonLd data={jsonLdData} />
-      <h1 
+      <h1
         className="title font-semibold text-xl sm:text-2xl tracking-tighter transition-colors duration-300"
         style={{ color: 'rgb(var(--foreground))' }}
       >
         {post.metadata.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-6 sm:mb-8 text-sm">
-        <p 
+        <p
           className="text-sm transition-colors duration-300"
           style={{ color: 'rgb(var(--muted-foreground))' }}
         >
