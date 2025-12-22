@@ -64,7 +64,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="mb-8 sm:mb-16">
+    <footer className="mb-0">
       <div className="flex flex-col items-start gap-4 mt-8">
         <div className="flex flex-row items-center justify-between w-full gap-4">
           <div className="flex flex-row items-center gap-4">

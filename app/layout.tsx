@@ -6,6 +6,7 @@ import { Navbar } from './components/nav'
 import Footer from './components/footer'
 import { ThemeProvider } from './components/theme-provider'
 import { ClockWrapper } from './components/clock-wrapper'
+import { NatureFooter } from './components/nature-footer'
 import { baseUrl } from './sitemap'
 
 export const metadata: Metadata = {
@@ -67,8 +68,8 @@ export default function RootLayout({
             {children}
             <Footer />
           </div>
-
         </main>
+        <NatureFooter />
       </body>
     </html>
   )
