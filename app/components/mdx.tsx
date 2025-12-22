@@ -28,8 +28,56 @@ function CustomLink(props) {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
-function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />
+function RoundedImage(props: any) {
+  // Filter out invalid props that might come from markdown (like onLoad, onError as strings)
+  // Next.js Image component only accepts specific props - event handlers as strings cause React error #231
+  const {
+    alt,
+    src,
+    width,
+    height,
+    title,
+    // Explicitly exclude event handlers and other invalid props that might be strings from markdown
+    onLoad,
+    onError,
+    onClick,
+    onMouseEnter,
+    onMouseLeave,
+    loading,
+    ...rest
+  } = props
+
+  // Build valid props object for Next.js Image
+  const imageProps: any = {
+    alt: alt || '',
+    src: src || '',
+    className: 'rounded-lg',
+  }
+
+  // Handle width/height if provided
+  if (width && height) {
+    const numWidth = Number(width)
+    const numHeight = Number(height)
+    if (!isNaN(numWidth) && !isNaN(numHeight) && numWidth > 0 && numHeight > 0) {
+      imageProps.width = numWidth
+      imageProps.height = numHeight
+    } else {
+      // Use fill if dimensions are invalid
+      imageProps.fill = true
+      imageProps.style = { objectFit: 'contain' }
+    }
+  } else {
+    // Use fill if dimensions not provided
+    imageProps.fill = true
+    imageProps.style = { objectFit: 'contain' }
+  }
+
+  // Add title if provided
+  if (title) {
+    imageProps.title = title
+  }
+
+  return <Image {...imageProps} />
 }
 
 function Code({ children, className, ...props }: any) {

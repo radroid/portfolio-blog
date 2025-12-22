@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
 import { baseUrl } from 'app/sitemap'
+import { JsonLd } from 'app/components/json-ld'
 
 export async function generateStaticParams() {
   let posts = getBlogPosts()
@@ -60,30 +61,26 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
     notFound()
   }
 
+  const jsonLdData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.metadata.title,
+    datePublished: post.metadata.publishedAt,
+    dateModified: post.metadata.publishedAt,
+    description: post.metadata.summary,
+    image: post.metadata.image
+      ? `${baseUrl}${post.metadata.image}`
+      : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+    url: `${baseUrl}/blog/${post.slug}`,
+    author: {
+      '@type': 'Person',
+      name: 'Generalist Builder',
+    },
+  }
+
   return (
     <section>
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${baseUrl}/blog/${post.slug}`,
-            author: {
-              '@type': 'Person',
-              name: 'Generalist Builder',
-            },
-          }),
-        }}
-      />
+      <JsonLd data={jsonLdData} />
       <h1 
         className="title font-semibold text-xl sm:text-2xl tracking-tighter transition-colors duration-300"
         style={{ color: 'rgb(var(--foreground))' }}
