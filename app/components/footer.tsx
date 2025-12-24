@@ -78,7 +78,7 @@ export default function Footer() {
                     className="transition-all hover:opacity-70 outline-none cursor-pointer"
                   >
                     <Avatar className="h-10 w-10">
-                      <AvatarImage src="/raj-avatar.png" alt="Raj" />
+                      <AvatarImage src="/raj-avatar.webp" alt="Raj" />
                       <AvatarFallback>R</AvatarFallback>
                     </Avatar>
                   </a>

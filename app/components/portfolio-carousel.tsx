@@ -1,13 +1,16 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import { useRouter } from 'next/navigation'
 import { useIsDarkTheme } from '@/app/lib/theme-utils'
 
 interface PortfolioProject {
   id: string
   title: string
-  url: string
+  url?: string
+  video?: string
   description?: string
+  shortDescription?: string
   technologies?: string[]
 }
 
@@ -22,7 +25,9 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
   const [isPaused, setIsPaused] = useState(false)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
   const slidesContainerRef = useRef<HTMLDivElement>(null)
+  const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map())
   const isDarkTheme = useIsDarkTheme()
+  const router = useRouter()
 
   // Simple theme-aware shadow
   const buttonShadow = useMemo(() => {
@@ -114,16 +119,31 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
     }
   }, [isPaused, projects.length, goToNext])
 
+  // Play video when slide becomes active, pause others
+  useEffect(() => {
+    videoRefs.current.forEach((video, index) => {
+      if (video) {
+        if (index === currentIndex) {
+          video.play().catch(() => {
+            // Autoplay may fail, but that's okay - user interaction will start it
+          })
+        } else {
+          video.pause()
+        }
+      }
+    })
+  }, [currentIndex])
+
   if (projects.length === 0) {
     return (
-      <div className="w-full aspect-[16/10] min-h-[600px] sm:min-h-[700px] flex items-center justify-center text-neutral-500">
+      <div className="w-full flex items-center justify-center text-neutral-500" style={{ minHeight: '400px' }}>
         <p>No projects to display</p>
       </div>
     )
   }
 
   return (
-    <div className="w-full aspect-[16/10] min-h-[600px] sm:min-h-[700px] flex flex-col relative">
+    <div className="w-full flex flex-col relative">
       {/* Previous Button */}
       <button
         onClick={() => {
@@ -197,7 +217,7 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
       </button>
 
       <div
-        className="flex-1 relative overflow-hidden rounded-lg transition-colors duration-300 shadow-lg"
+        className="w-full relative overflow-hidden rounded-lg transition-colors duration-300 shadow-lg"
         style={{
           backgroundColor: 'rgb(var(--background))',
           boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
@@ -208,7 +228,7 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
         {/* Slides Container */}
         <div
           ref={slidesContainerRef}
-          className="flex h-full transition-transform duration-500 ease-in-out"
+          className="flex transition-transform duration-500 ease-in-out"
           style={{
             transform: `translateX(-${currentIndex * 100}%)`
           }}
@@ -216,7 +236,7 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
           {extendedProjects.map((project, index) => (
             <div
               key={`${project.id}-${index}`}
-              className="min-w-full h-full flex flex-col"
+              className="min-w-full w-full flex flex-col"
             >
               {/* Project Title Bar */}
               <div
@@ -231,28 +251,57 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
                 >
                   {project.title}
                 </h3>
-                {project.description && (
+                {(project.shortDescription || project.description) && (
                   <p
                     className="text-xs sm:text-sm mt-1 transition-colors duration-300"
                     style={{ color: 'rgb(var(--muted-foreground))' }}
                   >
-                    {project.description}
+                    {project.shortDescription || project.description}
                   </p>
                 )}
               </div>
 
-              {/* Iframe Container */}
+              {/* Video/Iframe Container */}
               <div
-                className="flex-1 relative transition-colors duration-300"
-                style={{ backgroundColor: 'rgb(var(--card))' }}
+                className="w-full relative transition-colors duration-300 cursor-pointer group flex items-center justify-center"
+                style={{ backgroundColor: 'rgb(var(--background))' }}
+                onClick={() => router.push(`/projects/${project.id}`)}
               >
-                <iframe
-                  src={project.url}
-                  className="w-full h-full border-0 rounded-xl"
-                  title={project.title}
-                  loading="lazy"
-                  sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
-                />
+                {project.video ? (
+                  <video
+                    ref={(el) => {
+                      if (el) {
+                        videoRefs.current.set(index, el)
+                      } else {
+                        videoRefs.current.delete(index)
+                      }
+                    }}
+                    src={index === currentIndex ? project.video : undefined}
+                    className="w-full h-auto max-h-[80vh] object-contain rounded-xl transition-opacity group-hover:opacity-90"
+                    autoPlay
+                    playsInline
+                    preload={index === currentIndex ? "auto" : "none"}
+                    loop
+                    muted
+                    aria-label={project.title}
+                    key={`${project.id}-${index}`}
+                  />
+                ) : project.url ? (
+                  <iframe
+                    src={project.url}
+                    className="w-full aspect-[16/10] border-0 rounded-xl transition-opacity group-hover:opacity-90"
+                    title={project.title}
+                    loading="lazy"
+                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
+                  />
+                ) : null}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  <div className="px-4 py-2 rounded-lg backdrop-blur-sm" style={{ backgroundColor: 'rgba(var(--card), 0.9)' }}>
+                    <p className="text-sm font-medium" style={{ color: 'rgb(var(--foreground))' }}>
+                      View details →
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           ))}

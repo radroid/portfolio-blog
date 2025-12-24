@@ -7,6 +7,7 @@ import Footer from './components/footer'
 import { ThemeProvider } from './components/theme-provider'
 import { ClockWrapper } from './components/clock-wrapper'
 import { NatureFooter } from './components/nature-footer'
+import { CalFloatingButton } from './components/cal-floating-button'
 import { baseUrl } from './sitemap'
 
 export const metadata: Metadata = {
@@ -17,8 +18,8 @@ export const metadata: Metadata = {
   },
   description: 'I build experiences—both digital and physical. Engineering background. Founder at ARK Expereinces.',
   icons: {
-    icon: '/raj-avatar.png',
-    apple: '/raj-avatar.png',
+    icon: '/raj-avatar.webp',
+    apple: '/raj-avatar.webp',
   },
   openGraph: {
     title: 'Generalist Builder | Engineering + Product + Businesses',
@@ -62,6 +63,7 @@ export default function RootLayout({
       <body className="antialiased min-h-screen transition-colors duration-300">
         <ThemeProvider />
         <ClockWrapper />
+        <CalFloatingButton />
         <main className="flex-auto min-w-0 flex flex-col">
           <div className="max-w-7xl mx-auto w-full px-4 md:px-8 pt-14 sm:pt-24 pb-4 sm:pb-8">
             <Navbar />
