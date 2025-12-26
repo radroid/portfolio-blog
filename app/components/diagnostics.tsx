@@ -268,8 +268,132 @@ export function Diagnostics({ isOpen: externalIsOpen, onClose, showButton = true
         backgroundColor: 'rgb(var(--card))',
       }}
     >
+      <div
+        className="mb-3 font-semibold text-sm border-b pb-2"
+        style={{
+          color: 'rgb(var(--foreground))',
+          borderBottomColor: 'rgba(var(--border), 0.5)',
+          borderBottomWidth: '1px',
+          borderBottomStyle: 'solid',
+        }}
+      >
+        DIAGNOSTICS
+      </div>
+      <div className="space-y-1.5">
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>LOCATION:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.location}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>PLATFORM:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.platform}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>LANGUAGE:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.language}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>NETWORK:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.network}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>MEMORY:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.memory}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>CORES:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.cores}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>UPTIME:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.uptime}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>VIEWPORT:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.viewport}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>SCREEN:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.screen}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>COLOR DEPTH:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.colorDepth}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>PIXEL RATIO:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.pixelRatio}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>TIMEZONE:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.timezone}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>HOST:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.host}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>COOKIES:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.cookies}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>JAVA:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.java}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>WEBGL:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.webgl}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>BATTERY:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.battery}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>GEOLOCATION:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.geolocation}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>LOCAL STORAGE:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.localStorage}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>SESSION STORAGE:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.sessionStorage}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>INDEXEDDB:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.indexedDB}</span>
+        </div>
+        <div className="flex justify-between">
+          <span style={{ color: 'rgb(var(--muted-foreground))' }}>STAT:</span>
+          <span style={{ color: 'rgb(var(--foreground))' }}>{data.stat}</span>
+        </div>
+        <div
+          className="mt-3 pt-3"
+          style={{
+            borderTopColor: 'rgba(var(--border), 0.5)',
+            borderTopWidth: '1px',
+            borderTopStyle: 'solid',
+          }}
+        >
+          <div className="mb-1" style={{ color: 'rgb(var(--muted-foreground))' }}>USER AGENT:</div>
+          <div className="break-all text-[10px]" style={{ color: 'rgb(var(--foreground))' }}>
+            {data.userAgent}
+          </div>
+        </div>
+      </div>
+
+      {time && (
+        <div
+          className="mt-4 pt-4"
+          style={{
+            borderTopColor: 'rgba(var(--border), 0.5)',
+            borderTopWidth: '1px',
+            borderTopStyle: 'solid',
+          }}
+        >
           <div
-            className="mb-3 font-semibold text-sm border-b pb-2"
+            className="mb-2 font-semibold text-sm border-b pb-2"
             style={{
               color: 'rgb(var(--foreground))',
               borderBottomColor: 'rgba(var(--border), 0.5)',
@@ -277,152 +401,28 @@ export function Diagnostics({ isOpen: externalIsOpen, onClose, showButton = true
               borderBottomStyle: 'solid',
             }}
           >
-            DIAGNOSTICS
+            TIME
           </div>
           <div className="space-y-1.5">
             <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>LOCATION:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.location}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>UTC:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{time.utc}</span>
             </div>
             <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>PLATFORM:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.platform}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>LOCAL:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{time.local}</span>
             </div>
             <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>LANGUAGE:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.language}</span>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>UNIX:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{time.unix}</span>
             </div>
             <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>NETWORK:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.network}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>MEMORY:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.memory}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>CORES:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.cores}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>UPTIME:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.uptime}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>VIEWPORT:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.viewport}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>SCREEN:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.screen}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>COLOR DEPTH:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.colorDepth}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>PIXEL RATIO:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.pixelRatio}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>TIMEZONE:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.timezone}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>HOST:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.host}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>COOKIES:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.cookies}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>JAVA:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.java}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>WEBGL:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.webgl}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>BATTERY:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.battery}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>GEOLOCATION:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.geolocation}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>LOCAL STORAGE:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.localStorage}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>SESSION STORAGE:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.sessionStorage}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>INDEXEDDB:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.indexedDB}</span>
-            </div>
-            <div className="flex justify-between">
-              <span style={{ color: 'rgb(var(--muted-foreground))' }}>STAT:</span>
-              <span style={{ color: 'rgb(var(--foreground))' }}>{data.stat}</span>
-            </div>
-            <div
-              className="mt-3 pt-3"
-              style={{
-                borderTopColor: 'rgba(var(--border), 0.5)',
-                borderTopWidth: '1px',
-                borderTopStyle: 'solid',
-              }}
-            >
-              <div className="mb-1" style={{ color: 'rgb(var(--muted-foreground))' }}>USER AGENT:</div>
-              <div className="break-all text-[10px]" style={{ color: 'rgb(var(--foreground))' }}>
-                {data.userAgent}
-              </div>
+              <span style={{ color: 'rgb(var(--muted-foreground))' }}>ZONE:</span>
+              <span style={{ color: 'rgb(var(--foreground))' }}>{time.zone}</span>
             </div>
           </div>
-
-          {time && (
-            <div
-              className="mt-4 pt-4"
-              style={{
-                borderTopColor: 'rgba(var(--border), 0.5)',
-                borderTopWidth: '1px',
-                borderTopStyle: 'solid',
-              }}
-            >
-              <div
-                className="mb-2 font-semibold text-sm border-b pb-2"
-                style={{
-                  color: 'rgb(var(--foreground))',
-                  borderBottomColor: 'rgba(var(--border), 0.5)',
-                  borderBottomWidth: '1px',
-                  borderBottomStyle: 'solid',
-                }}
-              >
-                TIME
-              </div>
-              <div className="space-y-1.5">
-                <div className="flex justify-between">
-                  <span style={{ color: 'rgb(var(--muted-foreground))' }}>UTC:</span>
-                  <span style={{ color: 'rgb(var(--foreground))' }}>{time.utc}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span style={{ color: 'rgb(var(--muted-foreground))' }}>LOCAL:</span>
-                  <span style={{ color: 'rgb(var(--foreground))' }}>{time.local}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span style={{ color: 'rgb(var(--muted-foreground))' }}>UNIX:</span>
-                  <span style={{ color: 'rgb(var(--foreground))' }}>{time.unix}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span style={{ color: 'rgb(var(--muted-foreground))' }}>ZONE:</span>
-                  <span style={{ color: 'rgb(var(--foreground))' }}>{time.zone}</span>
-                </div>
-              </div>
-            </div>
-          )}
+        </div>
+      )}
     </div>
   )
 

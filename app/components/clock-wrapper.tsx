@@ -12,7 +12,7 @@ export function ClockWrapper() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 640) // sm breakpoint
     }
-    
+
     checkMobile()
     window.addEventListener('resize', checkMobile)
 
@@ -25,7 +25,7 @@ export function ClockWrapper() {
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', checkMobile)
@@ -35,14 +35,13 @@ export function ClockWrapper() {
   return (
     <>
       {/* Desktop: Show analog clock */}
-      <div 
-        className={`hidden sm:block fixed top-4 right-2 sm:top-8 sm:right-4 md:right-8 z-40 transition-opacity duration-300 ${
-          isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
+      <div
+        className={`hidden sm:block fixed top-4 right-2 sm:top-8 sm:right-4 md:right-8 z-40 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
       >
         <OrbitalClock />
       </div>
-      
+
       {/* Mobile: Show digital clock */}
       <div className="block sm:hidden">
         <MobileDigitalClock />

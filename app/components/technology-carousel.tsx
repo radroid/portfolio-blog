@@ -187,16 +187,32 @@ export function TechnologyCarousel({
       )}
       <div className="pt-2 -mx-4 md:-mx-8">
         <div className="relative w-full flex items-center justify-center">
+          {/* Left fade gradient */}
+          <div
+            className="absolute left-0 top-0 bottom-0 w-32 md:w-48 z-10 pointer-events-none"
+            style={{
+              background: 'linear-gradient(to right, rgb(var(--background)), transparent)',
+            }}
+          />
+          {/* Right fade gradient */}
+          <div
+            className="absolute right-0 top-0 bottom-0 w-32 md:w-48 z-10 pointer-events-none"
+            style={{
+              background: 'linear-gradient(to left, rgb(var(--background)), transparent)',
+            }}
+          />
           <Carousel
             opts={{
               loop: true,
               align: 'start',
+              dragFree: true,
+              containScroll: 'trimSnaps',
             }}
             plugins={[
               AutoScroll({
                 speed: 0.7,
                 stopOnInteraction: false,
-                stopOnMouseEnter: true,
+                stopOnMouseEnter: false,
                 stopOnFocusIn: false,
               })
             ]}
