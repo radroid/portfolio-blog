@@ -35,11 +35,28 @@ interface TimeData {
   zone: string
 }
 
-export function Diagnostics() {
+interface DiagnosticsProps {
+  isOpen?: boolean
+  onClose?: () => void
+  showButton?: boolean
+  className?: string
+}
+
+export function Diagnostics({ isOpen: externalIsOpen, onClose, showButton = true, className = '' }: DiagnosticsProps = {}) {
   const [data, setData] = useState<DiagnosticsData | null>(null)
-  const [isOpen, setIsOpen] = useState(false)
+  const [internalIsOpen, setInternalIsOpen] = useState(false)
   const [time, setTime] = useState<TimeData | null>(null)
   const startTimeRef = useRef<number>(Date.now())
+
+  // Use external isOpen if provided, otherwise use internal state
+  const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen
+  const setIsOpen = (open: boolean) => {
+    if (externalIsOpen === undefined) {
+      setInternalIsOpen(open)
+    } else if (!open && onClose) {
+      onClose()
+    }
+  }
 
   useEffect(() => {
     const fetchDiagnostics = async () => {
@@ -244,45 +261,13 @@ export function Diagnostics() {
     )
   }
 
-  return (
-    <div className="relative">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="rounded-lg p-3 text-xs font-mono shadow-lg transition-all duration-300"
-        style={{
-          backgroundColor: 'rgb(var(--card))',
-          borderColor: 'transparent',
-          borderWidth: '1px',
-          borderStyle: 'solid',
-          transform: 'scale(1)',
-        }}
-        onMouseEnter={(e) => {
-          const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim()
-          e.currentTarget.style.borderColor = `rgba(${primaryColor}, 0.3)`
-          e.currentTarget.style.transform = 'scale(1.05)'
-          e.currentTarget.style.boxShadow = `0 20px 25px -5px rgba(${primaryColor}, 0.2), 0 10px 10px -5px rgba(${primaryColor}, 0.1)`
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = 'transparent'
-          e.currentTarget.style.transform = 'scale(1)'
-          e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
-        }}
-      >
-        <div style={{ color: 'rgb(var(--foreground))' }}>
-          LOCATION: {data.location}
-        </div>
-        <div className="mt-1" style={{ color: 'rgb(var(--muted-foreground))' }}>
-          {data.stat} • {data.platform}
-        </div>
-      </button>
-
-      {isOpen && (
-        <div
-          className="absolute bottom-full right-0 mb-2 rounded-lg p-4 text-xs font-mono max-w-md max-h-[60vh] overflow-y-auto shadow-lg transition-colors duration-300 z-50"
-          style={{
-            backgroundColor: 'rgb(var(--card))',
-          }}
-        >
+  const diagnosticsContent = (
+    <div
+      className={`rounded-lg p-4 text-xs font-mono max-w-md max-h-[60vh] overflow-y-auto shadow-lg transition-colors duration-300 ${className}`}
+      style={{
+        backgroundColor: 'rgb(var(--card))',
+      }}
+    >
           <div
             className="mb-3 font-semibold text-sm border-b pb-2"
             style={{
@@ -438,6 +423,51 @@ export function Diagnostics() {
               </div>
             </div>
           )}
+    </div>
+  )
+
+  // If showButton is false, just return the content
+  if (!showButton) {
+    return diagnosticsContent
+  }
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="rounded-lg p-3 text-xs font-mono shadow-lg transition-all duration-300"
+        style={{
+          backgroundColor: 'rgb(var(--card))',
+          borderColor: 'transparent',
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          transform: 'scale(1)',
+        }}
+        onMouseEnter={(e) => {
+          const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim()
+          e.currentTarget.style.borderColor = `rgba(${primaryColor}, 0.3)`
+          e.currentTarget.style.transform = 'scale(1.05)'
+          e.currentTarget.style.boxShadow = `0 20px 25px -5px rgba(${primaryColor}, 0.2), 0 10px 10px -5px rgba(${primaryColor}, 0.1)`
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = 'transparent'
+          e.currentTarget.style.transform = 'scale(1)'
+          e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
+        }}
+      >
+        <div style={{ color: 'rgb(var(--foreground))' }}>
+          LOCATION: {data.location}
+        </div>
+        <div className="mt-1" style={{ color: 'rgb(var(--muted-foreground))' }}>
+          {data.stat} • {data.platform}
+        </div>
+      </button>
+
+      {isOpen && (
+        <div
+          className="absolute bottom-full right-0 mb-2"
+        >
+          {diagnosticsContent}
         </div>
       )}
     </div>

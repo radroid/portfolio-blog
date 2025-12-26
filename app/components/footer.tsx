@@ -103,7 +103,7 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 hidden sm:block">
             <Diagnostics />
           </div>
         </div>
