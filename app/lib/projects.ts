@@ -1,3 +1,5 @@
+import { getR2VideoUrl } from './r2-config'
+
 export interface PortfolioProject {
   id: string
   title: string
@@ -20,7 +22,7 @@ export const portfolioProjects: PortfolioProject[] = [
     title: 'Penguin Mail – AI-first email client',
     shortTitle: 'Penguin Mail',
     url: 'https://www.penguinmail.app/',
-    video: '/penguin-mail-landing.mov',
+    video: getR2VideoUrl('/penguin mail landing.mov'),
     shortDescription: 'AI-powered email client that filters messages using natural language.',
     role: 'Product Lead & Builder',
     problem: 'Knowledge workers drown in low-value email; most clients treat all messages the same, forcing users to manually triage updates, promotions, and real conversations.',
@@ -47,7 +49,7 @@ export const portfolioProjects: PortfolioProject[] = [
     title: 'ARK Experience – IRL team-building game',
     shortTitle: 'ARK Experience',
     url: 'https://www.funwithark.ca/',
-    video: '/funwithark.mov',
+    video: getR2VideoUrl('/ARK experiences.mov'),
     shortDescription: 'Location-based puzzle experience with narrative and repeatable operations.',
     role: 'Co-founder, Product & Ops',
     problem: 'Teams wanted memorable group experiences, not another generic tour.',
@@ -91,7 +93,7 @@ export const portfolioProjects: PortfolioProject[] = [
     title: 'Bridger – AI image generation SaaS',
     shortTitle: 'Bridger',
     url: 'https://bridger.atawalk.ca/',
-    video: '/atawalk.mov',
+    video: getR2VideoUrl('/Atawalk Bridges.mov'),
     shortDescription: 'AI-powered image generation tool for custom bridge designs.',
     role: 'Product + Engineering',
     problem: 'Users wanted to generate custom bridge images but existing tools lacked specialized prompts and pricing models.',
@@ -139,7 +141,7 @@ export const portfolioProjects: PortfolioProject[] = [
     title: 'Stella 56 Diamonds – E-commerce platform',
     shortTitle: 'Stella 56 Diamonds',
     url: 'https://www.stella56diamonds.com/',
-    video: '/stella56.mov',
+    video: getR2VideoUrl('/Stella 56 Diamonds.mov'),
     shortDescription: 'Manufacturer-direct lab-grown diamonds platform.',
     role: 'Product + Engineering',
     problem: 'Consumers wanted transparent, ethical diamond options with certification and detailed product information.',
@@ -182,7 +184,7 @@ export const portfolioProjects: PortfolioProject[] = [
     title: 'Playground – Developer tool',
     shortTitle: 'Playground',
     url: 'https://playground.createplus.club/',
-    video: '/playgroundcn.mov',
+    video: getR2VideoUrl('/Playground CN.mov'),
     shortDescription: 'Design, tweak, and copy Shadcn components with instant previews.',
     role: 'Product + Engineering',
     problem: 'Developers wanted a faster way to browse, customize, and copy Shadcn components without setting up local environments.',
